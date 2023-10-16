@@ -694,13 +694,13 @@ void draw() {
     if (display_transformed_basis) {
         if (display_transformed_mesh) drawReferenceFrame(transformed_basis);
 
-        /*glColor3f(1., 1, 1.);
+        glColor3f(1., 1, 1.);
         if (display_transformed_mesh) {
         std::vector <Vec3> transformed_projection_on_basis;
         project(transformed_mesh.vertices, transformed_projection_on_basis, transformed_basis.origin(),
                 transformed_basis.normalized_axis(plane_id));
         drawPointSet(transformed_projection_on_basis);
-    }*/
+    }
     }
 
     if (display_plane) {
@@ -942,7 +942,8 @@ int main(int argc, char **argv) {
     // Essayer une mise à l'échelle non uniforme
 
     //Example de transformation :
-    Vec3 scale(1., 1., 1.); //Mise à l'échelle non uniforme
+    Vec3 scale(2., 1., 1.); //Mise à l'échelle non uniforme
+    
     Mat3 scale_matrix(scale[0], 0., 0.,
                       0., scale[1], 0.,
                       0., 0., scale[2]); //Matrice de transformation de mise à l'échelle
@@ -963,10 +964,11 @@ int main(int argc, char **argv) {
 
     //Cumulate transformation by matrix multiplications
     Mat3 transformation = z_rotation * y_rotation * x_rotation * scale_matrix;
+    std::cout << transformation.determinant() <<std::endl;
     //Add a translation
     Vec3 translation = Vec3(1., 0., 0.);
 
-    //Compute transform obejct with transformation matrix (roation and scale) and translation
+    //Compute transform object with transformation matrix (roation and scale) and translation
     Transform mesh_transform (transformation, translation);
 
     // Init transformed mesh, basis, planes and ellispoide to the input data
