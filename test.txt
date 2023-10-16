@@ -1,4 +1,4 @@
 Q1_1
-Avoir une transformation qui n'es pas orthogonal résulte en une image transformée n'ayant pas les mêmes dimensions que l'image de base.
+Avoir une transformation qui n'es pas orthogonal résulte en une image transformée n'ayant pas le même volume que l'image de base.
 Dans le code on voit le changement de la base dans:
 update_transformed qui va refaire une base qui se basera sur la matrice transformée. 

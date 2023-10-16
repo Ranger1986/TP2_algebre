@@ -942,7 +942,7 @@ int main(int argc, char **argv) {
     // Essayer une mise à l'échelle non uniforme
 
     //Example de transformation :
-    Vec3 scale(2., 1., 1.); //Mise à l'échelle non uniforme
+    Vec3 scale(1., 1., 1.); //Mise à l'échelle non uniforme
     
     Mat3 scale_matrix(scale[0], 0., 0.,
                       0., scale[1], 0.,
@@ -964,7 +964,15 @@ int main(int argc, char **argv) {
 
     //Cumulate transformation by matrix multiplications
     Mat3 transformation = z_rotation * y_rotation * x_rotation * scale_matrix;
-    std::cout << transformation.determinant() <<std::endl;
+    if (transformation.determinant()==1)
+    {
+        std::cout << "transformation orthogonale" << std::endl;
+    }
+    else
+    {
+        std::cout << "transformation pas orthogonale" << std::endl;
+    }
+    
     //Add a translation
     Vec3 translation = Vec3(1., 0., 0.);
 
