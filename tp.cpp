@@ -49,7 +49,7 @@ public:
     Transform(Mat3 i_transformation = Mat3::Identity(), Vec3 i_translation = Vec3(0., 0., 0.))
             : m_transformation(i_transformation), m_translation(i_translation) {
         // Question 1.3: TODO, modifier la ligne suivante pour que transformation m_vector_transformation soit la bonne transformation à appliquer aux vecteurs normaux.
-        m_vector_transformation = i_transformation;
+        m_vector_transformation = Mat3::inverse(m_transformation);
 
     }
 
@@ -67,6 +67,7 @@ public:
     Vec3 apply_to_normalized_vector(Vec3 const &k_vector) {
         Vec3 result = m_vector_transformation * k_vector;
         //Question 1.4: TODO, compléter
+        result.normalize();
         return result;
     }
 
@@ -942,7 +943,7 @@ int main(int argc, char **argv) {
     // Essayer une mise à l'échelle non uniforme
 
     //Example de transformation :
-    Vec3 scale(1., 1., 1.); //Mise à l'échelle non uniforme
+    Vec3 scale(2., 1., 1.); //Mise à l'échelle non uniforme
     
     Mat3 scale_matrix(scale[0], 0., 0.,
                       0., scale[1], 0.,
