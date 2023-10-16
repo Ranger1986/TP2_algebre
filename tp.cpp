@@ -964,7 +964,7 @@ int main(int argc, char **argv) {
 
     //Cumulate transformation by matrix multiplications
     Mat3 transformation = z_rotation * y_rotation * x_rotation * scale_matrix;
-    if (transformation.determinant()==1)
+    if (transformation.determinant()==1||transformation.determinant()==-1)
     {
         std::cout << "transformation orthogonale" << std::endl;
     }
