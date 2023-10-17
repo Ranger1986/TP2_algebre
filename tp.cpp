@@ -203,14 +203,19 @@ static bool fullScreen = false;
 
 //Calcul de la projection d'un point sur un plan
 Vec3 project(Vec3 const &input_point, Plane const &i_plane) {
-    Vec3 result = input_point;
+    //Vec3 result;
+    Vec3 plane_normal = input_point;
     //Question 2.3: TODO, projeter input_point sur le plan i_plane
+    Vec3 result= input_point - Vec3::dot(input_point, plane_normal)*plane_normal;
+
     return result;
 }
 
 // Calcul de la projection d'un point sur une droite (définie par un vecteur et un point)
 Vec3 project(Vec3 const &input_point, Vec3 const &i_origin, Vec3 const &i_axis) {
-    Vec3 result = input_point;
+    Vec3 vec_to_input=input_point -i_origin;
+    float projection_factor=Vec3::dot(vec_to_input, i_axis)/Vec3::dot(i_axis,i_axis);
+    Vec3 result = i_origin + projection_factor * i_axis;
     //Question 2.3: TODO, projeter input_point sur l'axe
     return result;
 }
