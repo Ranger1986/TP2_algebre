@@ -49,7 +49,9 @@ public:
     Transform(Mat3 i_transformation = Mat3::Identity(), Vec3 i_translation = Vec3(0., 0., 0.))
             : m_transformation(i_transformation), m_translation(i_translation) {
         // Question 1.3: TODO, modifier la ligne suivante pour que transformation m_vector_transformation soit la bonne transformation à appliquer aux vecteurs normaux.
-        m_vector_transformation = Mat3::inverse(m_transformation);
+        Mat3 transpose= m_transformation;
+        transpose.transpose();
+        m_vector_transformation = Mat3::inverse(transpose);
 
     }
 
